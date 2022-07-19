@@ -1,26 +1,29 @@
+import React, {useEffect, useState} from 'react'
+
 const Beers = () => {
 
     const [beers, setBeers] = useState();
 
-    useEffect(()=>{
+    const getBeers = () => {
         fetch('https://api.punkapi.com/v2/beers')
-        .then(r => r.json())
-        .then(result => setBeers(result.data))
-    }, [])
+        .then(res => res.json())
+        .then(data => setBeers(data))
+    }
+
+    useEffect(()=> getBeers(), [])
 
     return (
-        <h1>BEERS</h1>
-        <div>
-            {beer && beer.map((beer) => (
+        <>
+            {beers && beers.map((beer) => (
                 <tr key={beer.name}>
-                <th scope="row">{beer.index}</th>
-                <td>{beer.name}</td>
-                <td>{beer.description}</td>
-                <td><img src={beer.image_url} height="200px" alt={beer.index}/></td>
+                    <td>{beer.index}</td>
+                    <td>{beer.name}</td>
+                    <td>{beer.description}</td>
+                    <td><img src={beer.image_url} height="200px" alt={beer.index}/></td>
               </tr>
             ))}
-        <div/>
-        
-    );
+        </>  
+    )
 }
 
+export default Beers
