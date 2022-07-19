@@ -16,7 +16,7 @@ const Beers = () => {
         <>
             {beers && beers.map((beer) => (
                 <tr key={beer.name}>
-                    <td>{beer.index}</td>
+                    <td>{beer.id}</td>
                     <td>{beer.name}</td>
                     <td>{beer.description}</td>
                     <td><img src={beer.image_url} height="200px" alt={beer.index}/></td>
